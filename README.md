@@ -1,36 +1,103 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Task Manager
 
-## Getting Started
+## 🇪🇸 Español
 
-First, run the development server:
+**Task Manager** es una aplicación web creada con **React** y **Next.js** que permite gestionar tareas de manera eficiente y práctica. Este proyecto está diseñado para practicar habilidades modernas de desarrollo en **JavaScript/TypeScript**, manejo de estado en **React** y diseño responsivo con **TailwindCSS**.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+###  Características principales
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Crear, editar y eliminar tareas
+- Marcar tareas como completadas
+- Filtrado y búsqueda de tareas
+- Visualización de estadísticas básicas
+- Diseño responsivo adaptable a móviles y escritorio
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+###  Tecnologías utilizadas
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **React 18+ / Next.js 13+**
+- **TypeScript**
+- **TailwindCSS**
+- **LocalStorage** para persistencia de datos
 
-## Learn More
+###  Estructura de carpetas
 
-To learn more about Next.js, take a look at the following resources:
+task-manager/
+├─ src/
+│  ├─ components/
+│  │  ├─ Filters.tsx
+│  │  ├─ SearchBar.tsx
+│  │  ├─ StatsPanel.tsx
+│  │  ├─ TaskForm.tsx
+│  │  ├─ TaskItem.tsx
+│  │  └─ TaskList.tsx
+│  ├─ context/
+│  │  └─ TaskContext.tsx
+│  ├─ types/
+│  │  └─ task.ts
+│  ├─ utils/
+│  │  └─ helpers.ts
+│  └─ app/
+│     └─ page.tsx
+├─ public/
+├─ package.json
+├─ tsconfig.json
+└─ tailwind.config.js
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+###  Propósito del proyecto
 
-## Deploy on Vercel
+- Practicar métodos de manipulación de arrays (`map`, `filter`, `reduce`, `find`, etc.)
+- Mejorar la organización de componentes y el manejo de contexto en React
+- Aplicar diseño responsivo y estilizado profesional con TailwindCSS
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🇬🇧 English
+
+**Task Manager** is a web application built with **React** and **Next.js** for efficient task management. The project is designed to practice modern **JavaScript/TypeScript** skills, React state management, and responsive design with **TailwindCSS**.
+
+###  Main Features
+
+- Create, edit, and delete tasks
+- Mark tasks as completed
+- Filter and search tasks
+- View basic statistics
+- Responsive design for mobile and desktop
+
+###  Technologies Used
+
+- **React 18+ / Next.js 13+**
+- **TypeScript**
+- **TailwindCSS**
+- **LocalStorage** for simple persistence
+
+###  Folder Structure
+
+task-manager/
+├─ src/
+│  ├─ components/
+│  │  ├─ Filters.tsx
+│  │  ├─ SearchBar.tsx
+│  │  ├─ StatsPanel.tsx
+│  │  ├─ TaskForm.tsx
+│  │  ├─ TaskItem.tsx
+│  │  └─ TaskList.tsx
+│  ├─ context/
+│  │  └─ TaskContext.tsx
+│  ├─ types/
+│  │  └─ task.ts
+│  ├─ utils/
+│  │  └─ helpers.ts
+│  └─ app/
+│     └─ page.tsx
+├─ public/
+├─ package.json
+├─ tsconfig.json
+└─ tailwind.config.js
+
+
+###  Project Purpose
+
+- Practice array manipulation methods (`map`, `filter`, `reduce`, `find`, etc.)
+- Improve component organization and React context usage
+- Apply professional responsive design with TailwindCSS
