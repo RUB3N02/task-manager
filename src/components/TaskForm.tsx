@@ -1,3 +1,4 @@
+"use client";
 import { useState, useContext, FormEvent } from "react";
 import { TaskContext } from "../context/TaskContext";
 import { Task } from "../types/task";

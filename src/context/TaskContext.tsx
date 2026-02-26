@@ -1,27 +1,28 @@
-
+"use client";
 import { Task } from "../types/task";
 import { createContext, useEffect, useState } from "react";
 
 interface TaskContesxtProps {
-    tasks: Task[];
-    addTask(task: Task): void;
-    deleteTask(id: number): void;
-    updateTask(task: Task): void;
-    toggleTask(id: number, completed?: boolean): void; // opcional
-    searchTasks(query: string): Task[];
-    filterTasks(filter: string): Task[];
-    sortTasksByHours(): Task[];
-    getStatistics(): {
-        totalHours: number;
-        allCompleted: boolean;
-        hasHighPriority: boolean;
-    }
+  tasks: Task[];
+  filteredTasks: Task[];
+  addTask: (task: Task) => void;
+  deleteTask: (id: number) => void;
+  updateTask: (task: Task) => void;
+  toggleTask: (id: number, completed?: boolean) => void; // opcional
+  searchTasks: (query: string) => void;
+  filterTasks: (filter: string) => void;
+  sortTasksByHours: () => Task[];
+  getStatistics: () => {
+    totalHours: number;
+    allCompleted: boolean;
+    hasHighPriority: boolean;
+  };
 }
 export const TaskContext= createContext<TaskContesxtProps | undefined>(undefined);
 
 export const TaskProvider = ({ children }: { children: React.ReactNode }) => {
-   const [tasks, setTasks] = useState<Task[]>([]);
-
+    const [tasks, setTasks] = useState<Task[]>([]);
+    const [filteredTasks, setFilteredTasks] = useState<Task[]>([]);
 
     //  cargar tareas desde localStorage
   useEffect(() => {
@@ -35,9 +36,10 @@ export const TaskProvider = ({ children }: { children: React.ReactNode }) => {
     // este warning si se hace sin envolverla en una función. 
     // La forma recomendada es usar un "setTimeout" de 0 ms.
 
-  useEffect(()=>{
-    localStorage.setItem('tasks', JSON.stringify(tasks))
-  },[tasks])
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks));
+    setFilteredTasks(tasks); // Mostrar todas al iniciar
+  }, [tasks])
     //añado tarea
   const addTask = (task: Task ) => {
     setTasks(prev =>[...prev, task]);
@@ -63,21 +65,24 @@ export const TaskProvider = ({ children }: { children: React.ReactNode }) => {
     };
   // buscar tareas por texto
   const searchTasks = (query: string) => {
-    return tasks.filter(task =>
-      task.title.toLowerCase().includes(query.toLowerCase())
-    );
-  };
+  setFilteredTasks(
+    tasks.filter(task => task.title.toLowerCase().includes(query.toLowerCase()))
+  );
+    };
   // filtrar tareas
   const filterTasks = (filter: string) => {
-    switch (filter) {
-      case "completed":
-        return tasks.filter(task => task.completed);
-      case "pending":
-        return tasks.filter(task => !task.completed);
-      default:
-        return tasks;
-    }
-  };
+  switch (filter) {
+    case "completed":
+      setFilteredTasks(tasks.filter(task => task.completed));
+      break;
+    case "pending":
+      setFilteredTasks(tasks.filter(task => !task.completed));
+      break;
+    default:
+      setFilteredTasks(tasks);
+      break;
+  }
+ };
   //ordenar por horas
   const sortTasksByHours = () => {
     return [...tasks].sort((a, b) => a.hours - b.hours);
@@ -105,6 +110,7 @@ export const TaskProvider = ({ children }: { children: React.ReactNode }) => {
         filterTasks,
         sortTasksByHours,
         getStatistics,
+        filteredTasks,
       }}
     >
       {children}
@@ -121,7 +127,3 @@ export const TaskProvider = ({ children }: { children: React.ReactNode }) => {
 // - sortTasksByHours → ordena (.sort)
 // - getStatistics → calcula estadísticas (.reduce, .every, .some)
 // - useEffect → persiste en localStorage
-
-
-
-
