@@ -6,7 +6,9 @@ export const calculateTotalHours = (tasks: Task[]) => {
 
 export const sortByHours =(task:Task[]) => [...task].sort((a,b)=>a.hours- b.hours);
 
-export const filterByPryority = (task: Task[], priority:Task.filter(task => task.priority === priority))
+export const filterByPriority = (tasks: Task[], priority: string): Task[] => {
+  return tasks.filter(task => task.priority === priority);
+};
 
 // .reduce() → total de horas
 // .sort() → orden
